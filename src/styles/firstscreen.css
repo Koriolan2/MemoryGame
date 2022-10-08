@@ -1,0 +1,39 @@
+/*  Component FirstScreen */
+
+.firstscreen {
+    height: 100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+
+}
+
+.firstscreen img {
+    width: 80%;
+    max-width: 350px;
+}
+
+.button {
+    width: 230px;
+    border: none;
+    outline:none;
+    background-image: linear-gradient(180deg, rgba(224, 252, 165, 1) 23.96%, rgba(77, 208, 28, 1) 86.44%);
+    font-family: var(--font);
+    color: #fff;
+    font-size: 40px;
+    text-transform: lowercase;
+    text-shadow: 0 0 3px #206227;
+    padding: 14px 27px;
+    border-radius: 13px;
+    border: 3px solid #206227;
+    box-shadow: 0 3px 0 0 #206227, 
+                0 1.5px 0 8px var(--color3),
+                0 1.5px 0 12px #D52539;
+    cursor:pointer;
+    margin: 35px auto;                
+}
+
+.button:hover {
+    background-image: linear-gradient(to top, rgba(224, 252, 165, 1) 23.96%, rgba(77, 208, 28, 1) 86.44%);
+}

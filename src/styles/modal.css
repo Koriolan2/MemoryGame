@@ -1,0 +1,50 @@
+.overlay {
+    position:fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    background-color: rgba(0,0,0,0.8);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.modal__window {
+    background-image: radial-gradient(55.87% 55.87% at 50.19% 47.51%, rgba(138, 30, 189, 0) 0%, #4B39A3 100%);
+    border: 3px solid var(--color3);
+    border-radius: 15px;
+    padding: 30px;
+    position:relative;
+    width: 250px;
+    height: 280px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.title{
+    background-image: url(../images/lenta.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: -41px;
+    right:-41px;
+    top: -35px;
+    height: 80px;
+    padding: 10px
+}
+
+.level__items {
+    list-style-type:none;
+    
+}
+
+.level__item {
+    padding: 5px;
+    cursor:pointer;
+}
+
+.level__item:hover {
+    color: var(--color2)
+}
