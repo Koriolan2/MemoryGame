@@ -22,6 +22,17 @@ h2 { color : #A2B8D8;}
     height: 90px;
     width: 90px;
     border: 1px dashed #fff; 
+    position: relative;
+}
+
+.field__error {
+    outline: 3px solid #ff0000;
+    box-shadow:0 0 15px #ff0000;
+}
+
+.field__succsess {
+    outline: 3px solid #26ff00;
+    box-shadow:0 0 15px #26ff00;
 }
 
 .details {}
@@ -43,6 +54,29 @@ h2 { color : #A2B8D8;}
 
 img {
     width: 100%;
+}
+
+
+
+.delete__button {
+    background-color: #ff0000;
+    display:block;
+    width: 25px;
+    height:25px;
+    border-radius: 50%;
+    font-family:Arial, Helvetica, sans-serif;
+    line-height:25px;
+    text-align:center;
+    cursor:pointer;
+    transform:rotate(45deg);
+    box-shadow: 0 0 3px #000;
+    position: absolute;
+    right:-5px;
+    bottom: -5px;
+}
+
+.delete__button:hover {
+    background-color: #9d0404;
 }
 
 @media screen and (max-width: 540px){

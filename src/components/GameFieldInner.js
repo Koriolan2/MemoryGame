@@ -1,6 +1,7 @@
 import React from 'react';
+import LiField from './LiField';
 
-export default function GameFieldInner ({arr, startGame, dragOverHandler, dragLeaveHandler, dragEndHendler, dropHendler}) {
+export default function GameFieldInner ({arr, startGame, dragOverHandler, dragLeaveHandler, dragEndHendler, dropHendler, currentElement}) {
     let count = arr.length;    
     let template = {};
     
@@ -30,34 +31,21 @@ export default function GameFieldInner ({arr, startGame, dragOverHandler, dragLe
         }
         return template;
     }
-
-    
+   
     return (
         <ul className = "field__items" style={generateTemplate()}>
-              {arr.map((item , index) => 
-                <li 
-                    className="field__item" 
-                    key = {index} 
-                    data-pic = {item}
-                    onDragOver = {e => dragOverHandler(e)}
-                    onDragLeave = {e => dragLeaveHandler(e)}
-                    onDragEnd = {e => dragEndHendler(e)}
-                    onDrop = {e => dropHendler(e)} 
-                > 
-                {
-                    !startGame && 
-                    <img 
-                        src = {item}  
-                        alt = 'element'
-                    />
-                }
-                        
-              
-                    
-                </li>
-              )}      
-                       
-                    
+              {arr.map((item , index) => <LiField 
+                                            key = {index} 
+                                            item = {item} 
+                                            index = {index}
+                                            dragOverHandler = {dragOverHandler}
+                                            dragLeaveHandler = {dragLeaveHandler}
+                                            dragEndHendler = {dragEndHendler}
+                                            dropHendler = {dropHendler}
+                                            currentElement = {currentElement}
+                                            startGame = {startGame} 
+                                                                                       
+                                        />)}
         </ul>
     );
 }
