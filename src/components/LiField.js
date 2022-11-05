@@ -7,7 +7,6 @@ export default function LiField({ item, index, startGame, dragOverHandler, dragL
         <li
             className = 'field__item'
             key={index}
-            data-pic={item}
             onDragOver={e => dragOverHandler(e)}
             onDragLeave={e => dragLeaveHandler(e)}
             onDragEnd={e => dragEndHendler(e)}
@@ -16,7 +15,7 @@ export default function LiField({ item, index, startGame, dragOverHandler, dragL
             {
                 !startGame &&
                 <img
-                    src={item}
+                    src={item.elem}
                     alt='element'
                 />
             }

@@ -7,7 +7,6 @@ import Rating from './components/Rating';
 import NotFound from './components/NotFound';
 import Modal from './components/Modal';
 import useArray from './hooks/useArray';
-// import useTimer from './hooks/useTimer';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 
@@ -15,7 +14,10 @@ function App() {
   const [openWindow, setOpenWindow] = useState(null);
   const [selectLevel, setSelectLevel] = useState({});
   
-  const arr = useArray(selectLevel.count);
+  const [arr, userLevel] = useArray(selectLevel.count);
+
+  console.log(arr);
+  console.log(userLevel);
   
   return ( 
     <>
