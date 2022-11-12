@@ -1,5 +1,6 @@
 import {pics} from '../components/ImagesDB';
 
+
 export default function useArray(n) {
     let allUniquePicture = [];
     let gameLevel = [];
@@ -28,11 +29,12 @@ export default function useArray(n) {
         return arr;
     }
 
-    const c = genArrNumb(); 
-
-    gameLevel = c.map((item, index) => {return {id: index, pic: pics[item]}})
-    gameFloor = c.map((item, index) => {return {id: index, pic: null}})
-    allUniquePicture = c.sort(sortable).map((item, index) => {return {id: index, pic: pics[item]}})
-
+   
+        const c = genArrNumb(); 
+        gameLevel = c.map((item, index) => {return {id: index, pic: pics[item]}})
+        gameFloor = c.map((item, index) => {return {id: index, pic: null}})
+        allUniquePicture = c.sort(sortable).map((item, index) => {return {id: index, pic: pics[item]}})
+  
+    
     return [gameLevel, allUniquePicture,  gameFloor]
 }

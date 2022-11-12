@@ -1,8 +1,10 @@
-import React from 'react';
-// import { pics } from './ImagesDB';
-import {motion} from 'framer-motion'
+import React, {useContext} from 'react';
+import {motion} from 'framer-motion';
+import { GameContext } from './Context';
 
-export default function DetailsInner ({allUniquePicture}) {
+
+export default function DetailsInner () {
+    const data = useContext(GameContext);
 
     const myVariant = {
         hidden: {opacity:0},
@@ -18,7 +20,7 @@ export default function DetailsInner ({allUniquePicture}) {
     return (
             <ul className = "details__items">
                 {
-                    allUniquePicture.map((item, index) => 
+                    data.allUniquePictureState.map((item, index) => 
                         <motion.li key = {index} 
                             className = "details__item"
                             variants = {myVariant}
@@ -30,7 +32,8 @@ export default function DetailsInner ({allUniquePicture}) {
                                 src = {item.pic}  
                                 alt = "element"
                                 draggable = {true}
-                                style = {{cursor:"grab"}}                                                              
+                                style = {{cursor:"grab"}} 
+                                onDragStart = {e => data.dragStartHandler(e, item, 'one')}                                                             
                             />
                         </motion.li> 
                     )

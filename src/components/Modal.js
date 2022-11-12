@@ -5,6 +5,7 @@ import { GameContext } from './Context';
 
 export default function Modal() {
     const data = useContext(GameContext);
+    
     const variant = {
         hidden: {
             opacity:0,
@@ -16,6 +17,7 @@ export default function Modal() {
         }
 
     };
+    
     const assignLevel = (num) => {
         data.setSelectLevel(num);
         data.setOpenWindow(null);
@@ -49,23 +51,29 @@ export default function Modal() {
                                 stiffness:180,
                             }}
                         >
-                            <h3 className='title'>Рівень складності</h3>
-                            <ul className="level__items">
-                                <li 
-                                    className='level__item'
-                                    onClick = {() => assignLevel({title: 1, count: 4})}
-                                >Легкий  2 x 2</li>
-            
-                                <li 
-                                    className='level__item'
-                                    onClick = {() => assignLevel({title: 2, count: 6})}
-                                >Середній  3 x 2</li>
-            
-                                <li 
-                                    className='level__item'
-                                    onClick = {() => assignLevel({title: 3, count: 9})}
-                                >Складний  3 x 3</li>
-                            </ul>
+                            {!data.final && <>
+                                <h3 className='title'>Рівень складності</h3>
+                                <ul className="level__items">
+                                    <li 
+                                        className='level__item'
+                                        onClick = {() => assignLevel({title: 1, count: 4})}
+                                    >Легкий  2 x 2</li>
+                
+                                    <li 
+                                        className='level__item'
+                                        onClick = {() => assignLevel({title: 2, count: 6})}
+                                    >Середній  3 x 2</li>
+                
+                                    <li 
+                                        className='level__item'
+                                        onClick = {() => assignLevel({title: 3, count: 9})}
+                                    >Складний  3 x 3</li>
+                                </ul></>
+                            }
+                            {data.final && <>
+                                <h3 className='title'>Результат</h3>
+                                <p> Вітаємо! В тебе чудова пам'ять</p>
+                            </>}
                         </motion.div>
                     </motion.div>
                 )

@@ -5,7 +5,7 @@ import { GameContext } from './Context';
 
 export default function GameFieldInner ({startGame}) {
     const data = useContext(GameContext);
-    let count = data.gameLevel.length;    
+    let count = data.gameLevelState.length;    
     let template = {};
     
     const generateTemplate = () => {
@@ -38,7 +38,7 @@ export default function GameFieldInner ({startGame}) {
     if(startGame) {
     return (
         <ul className = "field__items" style={generateTemplate()}>
-            {data.gameFloor.map(item => <LiField 
+            {data.gameFloorState.map(item => <LiField 
                                         key = {item.id}
                                         item = {item}
                                         />)}
@@ -47,7 +47,7 @@ export default function GameFieldInner ({startGame}) {
     }
     return (
         <ul className = "field__items" style={generateTemplate()}>
-              {data.gameLevel.map((item , index) => <LiField 
+              {data.gameLevelState.map((item , index) => <LiField 
                                             key = {index} 
                                             item = {item} 
                                             index = {index}

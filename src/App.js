@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useEffect, useContext} from 'react';
 import Menu from './components/Menu';
 import FirstScreen from './components/FirstScreen';
 import GameField from './components/GameField';
@@ -12,12 +12,7 @@ import { GameContext } from './components/Context';
 
 function App() {
   const data = useContext(GameContext);
-  // const [gameLevel, allUniquePicture,  gameFloor] = useArray(data.selectLevel.count);
-
-  console.log(data.gameLevel);
-  console.log(data.allUniquePicture);
-  console.log(data.gameFloor);
-  
+ 
   return ( 
     <>
       <section className="main">
@@ -26,7 +21,8 @@ function App() {
               
                   <Switch>
                       <Route exact path = '/'>
-                        <FirstScreen/></Route>
+                        <FirstScreen/>
+                      </Route>
                       <Route path = '/settings' component = {Settings}  />
                       <Route path = '/rating' component = {Rating} />
                       <Route path = '/game'>
@@ -43,9 +39,7 @@ function App() {
           </div>
           </Router>
       </section>
-      <Modal 
-          setSelectLevel = {data.setSelectLevel}        
-      />
+      <Modal/>
     </>
    );
 }

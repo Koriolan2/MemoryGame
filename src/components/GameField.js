@@ -28,7 +28,7 @@ export default function GameField () {
                 <GameFieldInner startGame = {startGame} />
             </div>
             <div className = "details">
-                <DetailsInner allUniquePicture = {data.allUniquePicture}/>
+                <DetailsInner/>
             </div>
         </>
     );

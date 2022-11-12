@@ -16,7 +16,6 @@ export default function Menu() {
         <MenuItem 
                 image = {images[1]} 
                 title = "Рівень"
-                
                 url = "/"
         />
         <MenuItem 

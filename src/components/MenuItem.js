@@ -4,10 +4,13 @@ import { GameContext } from './Context';
 
 export default function MenuItem({image, title,  url}) {
     const data = useContext(GameContext);
+    const isEvent = () => {
+        if (url === "/") {return () => data.setOpenWindow(true)}
+    }
     return (
         <li 
             className="menu__item"
-            onClick = {() => data.setOpenWindow(true)}
+            onClick = {isEvent()}
         >
             <Link to = {url}>
                 <img src = {image} alt = {title} />
