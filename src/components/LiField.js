@@ -1,26 +1,22 @@
 import React from 'react';
-import DeleteButton from './DeleteButton'
 
-export default function LiField({ item, index, startGame, dragOverHandler, dragLeaveHandler, dragEndHendler, dropHendler, currentElement}) {
+
+export default function LiField({ item, index}) {
     
     return (
         <li
             className = 'field__item'
-            key={index}
-            onDragOver={e => dragOverHandler(e)}
-            onDragLeave={e => dragLeaveHandler(e)}
-            onDragEnd={e => dragEndHendler(e)}
-            onDrop={e => dropHendler(e)}
+            key={index}            
         >
             {
-                !startGame &&
+                item.pic &&
                 <img
-                    src={item.elem}
+                    src={item.pic}
                     alt='element'
                 />
             }
 
-            <DeleteButton currentElement={currentElement}/>
+           
 
         </li>
     );

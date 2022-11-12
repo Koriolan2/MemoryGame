@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import Menu from './components/Menu';
 import FirstScreen from './components/FirstScreen';
 import GameField from './components/GameField';
@@ -6,18 +6,17 @@ import Settings from './components/Settings';
 import Rating from './components/Rating';
 import NotFound from './components/NotFound';
 import Modal from './components/Modal';
-import useArray from './hooks/useArray';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { GameContext } from './components/Context';
 
 
 function App() {
-  const [openWindow, setOpenWindow] = useState(null);
-  const [selectLevel, setSelectLevel] = useState({});
-  
-  const [arr, userLevel] = useArray(selectLevel.count);
+  const data = useContext(GameContext);
+  // const [gameLevel, allUniquePicture,  gameFloor] = useArray(data.selectLevel.count);
 
-  console.log(arr);
-  console.log(userLevel);
+  console.log(data.gameLevel);
+  console.log(data.allUniquePicture);
+  console.log(data.gameFloor);
   
   return ( 
     <>
@@ -27,17 +26,11 @@ function App() {
               
                   <Switch>
                       <Route exact path = '/'>
-                        <FirstScreen 
-                            setOpenWindow = {setOpenWindow}
-                            selectLevel = {selectLevel.title}
-                        /></Route>
+                        <FirstScreen/></Route>
                       <Route path = '/settings' component = {Settings}  />
                       <Route path = '/rating' component = {Rating} />
                       <Route path = '/game'>
-                        <GameField
-                            selectLevel = {selectLevel}
-                            arr = {arr}                            
-                        />
+                        <GameField/>
                       </Route>
                       <Route component = {NotFound} />
                   </Switch>
@@ -45,16 +38,13 @@ function App() {
           </div>
           <div className = "menu">
             
-            <Menu
-                setOpenWindow = {setOpenWindow}/>
+            <Menu/>
             
           </div>
           </Router>
       </section>
       <Modal 
-          openWindow = {openWindow} 
-          setOpenWindow = {setOpenWindow}  
-          setSelectLevel = {setSelectLevel}        
+          setSelectLevel = {data.setSelectLevel}        
       />
     </>
    );

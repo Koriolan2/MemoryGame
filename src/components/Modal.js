@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import '../styles/modal.css';
 import { motion, AnimatePresence } from 'framer-motion';
+import { GameContext } from './Context';
 
-export default function Modal({openWindow, setOpenWindow, setSelectLevel }) {
+export default function Modal() {
+    const data = useContext(GameContext);
     const variant = {
         hidden: {
             opacity:0,
@@ -15,17 +17,17 @@ export default function Modal({openWindow, setOpenWindow, setSelectLevel }) {
 
     };
     const assignLevel = (num) => {
-        setSelectLevel(num);
-        setOpenWindow(null);
+        data.setSelectLevel(num);
+        data.setOpenWindow(null);
     }
 
     return(
         <AnimatePresence>
             {
-                openWindow && (
+                data.openWindow && (
                     <motion.div 
                         className="overlay"
-                        onClick = {() => setOpenWindow(null)}
+                        onClick = {() => data.setOpenWindow(null)}
                         initial = {{opacity:0}}
                         animate = {{opacity:1}}
                         exit = {{opacity:0}}

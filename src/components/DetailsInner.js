@@ -1,8 +1,8 @@
 import React from 'react';
-import { pics } from './ImagesDB';
+// import { pics } from './ImagesDB';
 import {motion} from 'framer-motion'
 
-export default function DetailsInner () {
+export default function DetailsInner ({allUniquePicture}) {
 
     const myVariant = {
         hidden: {opacity:0},
@@ -18,7 +18,7 @@ export default function DetailsInner () {
     return (
             <ul className = "details__items">
                 {
-                    pics.map((item, index) => 
+                    allUniquePicture.map((item, index) => 
                         <motion.li key = {index} 
                             className = "details__item"
                             variants = {myVariant}
@@ -27,7 +27,7 @@ export default function DetailsInner () {
                             custom = {index}
                         >
                             <img 
-                                src = {item}  
+                                src = {item.pic}  
                                 alt = "element"
                                 draggable = {true}
                                 style = {{cursor:"grab"}}                                                              

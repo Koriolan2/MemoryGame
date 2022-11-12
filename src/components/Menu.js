@@ -2,8 +2,9 @@ import React from 'react';
 import { images } from './ImagesDB';
 import MenuItem from './MenuItem';
 
-export default function Menu({setOpenWindow}) {
 
+export default function Menu() {
+   
     return ( 
     <ul className="menu__items">
         <MenuItem 
@@ -15,7 +16,7 @@ export default function Menu({setOpenWindow}) {
         <MenuItem 
                 image = {images[1]} 
                 title = "Рівень"
-                setOpenWindow = {setOpenWindow}
+                
                 url = "/"
         />
         <MenuItem 

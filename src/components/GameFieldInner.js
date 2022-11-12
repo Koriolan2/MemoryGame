@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import LiField from './LiField';
+import { GameContext } from './Context';
 
-export default function GameFieldInner ({arr, startGame}) {
-    let count = arr.length;    
+
+export default function GameFieldInner ({startGame}) {
+    const data = useContext(GameContext);
+    let count = data.gameLevel.length;    
     let template = {};
     
     const generateTemplate = () => {
@@ -31,10 +34,20 @@ export default function GameFieldInner ({arr, startGame}) {
         }
         return template;
     }
-   
+
+    if(startGame) {
     return (
         <ul className = "field__items" style={generateTemplate()}>
-              {arr.map((item , index) => <LiField 
+            {data.gameFloor.map(item => <LiField 
+                                        key = {item.id}
+                                        item = {item}
+                                        />)}
+        </ul>
+        )
+    }
+    return (
+        <ul className = "field__items" style={generateTemplate()}>
+              {data.gameLevel.map((item , index) => <LiField 
                                             key = {index} 
                                             item = {item} 
                                             index = {index}

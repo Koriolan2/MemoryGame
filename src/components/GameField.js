@@ -1,14 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import '../styles/gamefield.css';
 import GameFieldInner from './GameFieldInner';
 import DetailsInner from './DetailsInner';
 import Timer from './Timer';
 import useTimer from '../hooks/useTimer';
-// import DeleteButton from './DeleteButton';
+import { GameContext } from './Context';
 
 
-export default function GameField ({selectLevel, arr}) {
-    const [minutes, seconds] = useTimer(selectLevel);
+export default function GameField () {
+    const data = useContext(GameContext);
+    const [minutes, seconds] = useTimer(data.selectLevel);
     const [startGame, isStartGame] = useState(null);
 
     useEffect(()=> {
@@ -18,19 +19,16 @@ export default function GameField ({selectLevel, arr}) {
     
     return (
         <>
-            <h2>Рівень складності {selectLevel.title} </h2>
+            <h2>Рівень складності {data.selectLevel.title} </h2>
             {
-                selectLevel.title && <Timer minutes = {minutes} seconds = {seconds}/>
+                data.selectLevel.title && <Timer minutes = {minutes} seconds = {seconds}/>
             }
             
             <div className = "field">
-                <GameFieldInner 
-                    arr = {arr}
-                    startGame = {startGame}                                          
-                />
+                <GameFieldInner startGame = {startGame} />
             </div>
             <div className = "details">
-                <DetailsInner/>
+                <DetailsInner allUniquePicture = {data.allUniquePicture}/>
             </div>
         </>
     );

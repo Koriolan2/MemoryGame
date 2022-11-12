@@ -1,12 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import logo from '../images/logo.svg';
 import '../styles/firstscreen.css';
 import {useHistory} from 'react-router-dom';
+import { GameContext } from './Context';
 
-export default function FirstScreen ({setOpenWindow, selectLevel}) {
+export default function FirstScreen () {
+    
+    const data = useContext(GameContext);
     const history = useHistory();
 
-    if (selectLevel) {
+    if (data.selectLevel) {
         return history.push("/game");
     } 
     return (
@@ -17,7 +20,7 @@ export default function FirstScreen ({setOpenWindow, selectLevel}) {
             />
             <button 
                 className = "button" 
-                onClick = {() => setOpenWindow(true)}                
+                onClick = {() => data.setOpenWindow(true)}                
             > Грати </button>    
 
         </div>
