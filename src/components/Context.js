@@ -1,17 +1,18 @@
 import React, {useState, useEffect, createContext} from 'react';
-import useArray from '../hooks/useArray'
+import useArray from '../hooks/useArray';
+import useGameTimer from '../hooks/useGameTimer';
 
 export const GameContext = createContext();
 
+
 const Context = (props) => {
     const [selectLevel, setSelectLevel] = useState({});
-    const [openWindow, setOpenWindow] = useState(null);
-        
+    const [openWindow, setOpenWindow] = useState(null);        
     const [gameLevel, allUniquePicture,  gameFloor] = useArray(selectLevel.count);
-
     const [gameFloorState, setGameFloorState] = useState([]);
     const [gameLevelState, setGameLevelState] = useState([]);
     const [allUniquePictureState, setAllUniquePictureState] = useState([]);
+    const [startGame, isStartGame] = useState(null);
 
     useEffect(() => {
         setGameFloorState(gameFloor);
@@ -96,6 +97,79 @@ const Context = (props) => {
         }    
       }, [result]);
 
+      //Rating
+      const [gameRating, setGameRating] = useState([]);
+      const [minutes, seconds] = useGameTimer(startGame, isStartGame, final);
+
+      const sortRating = (a,b) => {
+          if (a.time > b.time) {
+            return 1;
+          } else {
+            return -1;
+          }
+      }
+
+     const renderGameRating = gameRating.sort(sortRating).slice(0, 10);  
+     
+     const formatTime = (t) => {
+       return t > 9 ? t : '0' + t;
+      }
+
+     useEffect(() => {
+      if (final) {
+        
+        setGameRating([...gameRating, {
+          id:1,
+          title: `Рівень ${selectLevel.title}`,
+          time: `${formatTime(minutes)}:${formatTime(seconds)}`          
+        }])
+      }      
+     }, [final]);
+
+    useEffect(()=>{
+        
+        let dataLocalStorage = JSON.parse(localStorage.getItem('gameRating'));
+        dataLocalStorage && setGameRating(dataLocalStorage);    
+       
+     }, []);
+
+    useEffect(() => {
+      if (gameRating.length) {
+        const s = JSON.stringify(gameRating);        
+        localStorage.setItem('gameRating', s);
+      }
+        
+     }, [gameRating]);
+
+     
+    //Settings
+
+    const [timerRange, setTimerRange] = useState(null);
+    const [language, setLanguage] = useState(null); 
+
+    useEffect(()=> {
+      !timerRange && setTimerRange(5);
+      !language && setLanguage('ua');
+
+      let c = localStorage.getItem('settings');
+      let l = localStorage.getItem('lang');
+
+      c && setTimerRange(c);
+      l && setLanguage(l);
+    }, []);
+
+    useEffect(() => {
+      if (timerRange) {
+        localStorage.setItem('settings', timerRange);
+      }        
+    }, [timerRange]);
+    
+    useEffect (() => {
+      if (language) {
+        localStorage.setItem('lang', language);
+      }
+    }, [language]);
+
     const value = {
         openWindow,
         setOpenWindow,
@@ -112,7 +186,12 @@ const Context = (props) => {
         dragEndHandler,
         dragStartHandler,
         dropHandler,
-        final
+        final, setFinal,
+        renderGameRating,
+        startGame, isStartGame,
+        minutes,seconds,
+        timerRange, setTimerRange,
+        language, setLanguage
     };
 
     return (

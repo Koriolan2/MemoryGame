@@ -1,0 +1,34 @@
+.timeRange {
+    margin: 20px;
+}
+
+.timeRange span {
+    display:block;
+    font-size: 2em;
+}
+
+[type=range] {
+    width: 100%;
+    height: 50px;
+}
+
+.language__setting {}
+.language__items {
+    margin: 10px;
+    list-style-type:none;
+    display: flex;
+    justify-content: center;
+}
+.language__item {
+    flex-grow:1;
+    flex-basis: 45%;
+    background-color: blueviolet;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.language__item:hover{
+    background-color: rgb(84, 14, 149);
+}

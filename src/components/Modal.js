@@ -21,6 +21,15 @@ export default function Modal() {
     const assignLevel = (num) => {
         data.setSelectLevel(num);
         data.setOpenWindow(null);
+        data.isStartGame(false);
+        data.setFinal(null);
+    }
+
+    const close = () => {
+        data.setOpenWindow(null);
+        data.isStartGame(false);
+        data.setFinal(null);
+        // data.setSelectLevel({});
     }
 
     return(
@@ -29,7 +38,7 @@ export default function Modal() {
                 data.openWindow && (
                     <motion.div 
                         className="overlay"
-                        onClick = {() => data.setOpenWindow(null)}
+                        onClick = {() => close()}
                         initial = {{opacity:0}}
                         animate = {{opacity:1}}
                         exit = {{opacity:0}}

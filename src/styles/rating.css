@@ -1,0 +1,24 @@
+
+.rating__head {
+    margin: 10px;
+}
+
+.rating__items {
+    width: 90%;
+    margin: 10px auto;
+}
+.rating__item {
+    background-color: #C370FC;
+    list-style-position: inside;
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+    border-radius: 3px;
+}
+.rating__item>span{
+    padding: 10px 20px;
+}
+
+.level__title {}
+.level__time {}
